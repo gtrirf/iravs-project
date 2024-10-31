@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>
+    {% if lang == 'uz' %}
+        Biz haqimizda
+    {% elif lang == 'ru' %}
+        О нас
+    {% elif lang == 'en' %}
+        About Us
+    {% else %}
+        About Us
+    {% endif %}
+</h1>
+
+    <div class="about-section">
+        {% for about in about_section %}
+            <h2>
+                {% if lang == 'uz' %}
+                    {{ about.title_uz|default:about.title }}
+                {% elif lang == 'ru' %}
+                    {{ about.title_ru|default:about.title }}
+                {% elif lang == 'en' %}
+                    {{ about.title_en|default:about.title }}
+                {% else %}
+                    {{ about.title }}
+                {% endif %}
+            </h2>
+            <p>
+                {% if lang == 'uz' %}
+                    {{ about.body_uz|default:about.body }}
+                {% elif lang == 'ru' %}
+                    {{ about.body_ru|default:about.body }}
+                {% elif lang == 'en' %}
+                    {{ about.body_en|default:about.body }}
+                {% else %}
+                    {{ about.body }}
+                {% endif %}
+            </p>
+            {% if about.image %}
+                <img src="{{ about.image.url }}" alt="{{ about.title }}">
+                <br>
+                <small>{{ about.about_image }}</small>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

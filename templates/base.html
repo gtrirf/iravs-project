@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>django</title>
+</head>
+<body>
+
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language">
+        <option value="uz" {% if lang == 'uz' %}selected{% endif %} >O'zbek</option>
+        <option value="ru" {% if lang == 'ru' %}selected{% endif %} >Русский</option>
+        <option value="en" {% if lang == 'en' %}selected{% endif %} >English</option>
+    </select>
+    <button type="submit">Tilni o'zgartirish</button>
+</form>
+
+<div class="container">
+    {% block content %}
+    
+    {% endblock content %}
+</div>
+
+</body>
+</html>

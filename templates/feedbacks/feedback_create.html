@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Submit Your Feedback</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_fullname" class="form-label">Full Name</label>
+                {{ feedback_form.fullname }}
+                {% if feedback_form.fullname.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in feedback_form.fullname.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_email_or_number" class="form-label">Email or Phone Number</label>
+                {{ feedback_form.email_or_number }}
+                {% if feedback_form.email_or_number.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in feedback_form.email_or_number.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_body" class="form-label">Feedback</label>
+                {{ feedback_form.body }}
+                {% if feedback_form.body.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in feedback_form.body.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </form>
+    </div>
+{% endblock %}
