@@ -3,6 +3,7 @@ from django.views import View
 from .models import About
 from django.utils.translation import get_language
 
+
 class AboutView(View):
     def get(self, request):
         lang = get_language()
