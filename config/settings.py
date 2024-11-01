@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'apps.about',
     'apps.feedbacks',
     'apps.mainpage',
+    'apps.ideas',
 
     # external apps
     'ckeditor',
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'apps.core.tools.AdminLocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -115,7 +117,7 @@ LANGUAGES = [
     ('en', _('English')),
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 USE_TZ = True

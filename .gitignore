@@ -8,7 +8,7 @@ apps/*/migrations/*.py
 .idea
 
 env
-
+venv
 __pycache__/
 
 staticfiles/

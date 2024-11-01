@@ -1,11 +1,11 @@
 from django.db import models
 from apps.core.models import TimeBase
-
+from ckeditor.fields import RichTextField
 
 class Ideas(TimeBase):
     name = models.CharField(max_length=32)
     email = models.CharField(max_length=255, null=True, blank=True)
-    body = models.TextField()
+    body = RichTextField()
 
     class Meta:
         db_table = 'ideas'
@@ -16,8 +16,10 @@ class Ideas(TimeBase):
 
 class ReplyToIdea(TimeBase):
     idea = models.ForeignKey(Ideas, on_delete=models.SET_NULL, null=True, blank=True)
-    body = models.TextField()
+    body = RichTextField()
 
+    def __str__(self):
+        return f'You replied to {self.idea.name}'
 
 class IdeasImages(TimeBase):
     repliedidea = models.ForeignKey(ReplyToIdea, on_delete=models.CASCADE)
@@ -27,6 +29,6 @@ class IdeasImages(TimeBase):
         db_table = 'ideasimages'
 
     def __str__(self):
-        return self.repliedidea
+        return f'You replied to {self.repliedidea.idea.name}'
 
     
